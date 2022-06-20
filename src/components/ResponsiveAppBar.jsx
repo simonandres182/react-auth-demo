@@ -43,6 +43,7 @@ const ResponsiveAppBar = ({ pages }) => {
   };
 
   return (
+    
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>

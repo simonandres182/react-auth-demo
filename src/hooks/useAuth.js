@@ -9,8 +9,24 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const login = async (data) => {
-    setUser(data);
-    navigate("/dashboard/profile", { replace: true });
+    let opts = {
+      'username': data.username,
+      'password': data.password
+    }
+    fetch('http://localhost:5000/api/login', {
+      method: 'post',
+      body: JSON.stringify(opts)
+    }).then(r => r.json())
+      .then(token => {
+        if (token.access_token){
+          console.log(token);
+          setUser(data);
+          navigate("/dashboard/profile", { replace: true });  
+        }
+        else {
+          console.log("Please type in correct username/password");
+        }
+      });
   };
 
   const logout = () => {
@@ -24,6 +40,7 @@ export const AuthProvider = ({ children }) => {
       login,
       logout
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [user]
   );
 
