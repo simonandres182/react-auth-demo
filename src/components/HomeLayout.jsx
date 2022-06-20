@@ -1,6 +1,6 @@
 import { Navigate, useOutlet } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
-import { AppBar } from "./AppBar";
+import { ResponsiveAppBar } from "./ResponsiveAppBar";
 
 export const HomeLayout = () => {
   const { user } = useAuth();
@@ -12,12 +12,12 @@ export const HomeLayout = () => {
 
   return (
     <div>
-      <AppBar
-        pages={[
-          { label: "Home", path: "/" },
-          { label: "Login", path: "/login" }
-        ]}
-      />
+      <ResponsiveAppBar
+           pages={[
+            { label: "Home", path: "/" },
+            { label: "Login", path: "/login" }
+          ]}
+        />
       {outlet}
     </div>
   );
